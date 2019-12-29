@@ -24,13 +24,11 @@ public class InventoryClickListener implements Listener {
     @EventHandler
     public void onClickListener(InventoryClickEvent event){
 
-        if (event.getCurrentItem() == null ){
-            event.setCancelled(true);
-            return;
-        } else if (event.getCurrentItem().getType() == Material.AIR) {
+            if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) {
             event.setCancelled(true);
             return;
         }
+        
 
         Inventory inventory = event.getInventory();
         String itemStackName = event.getCurrentItem().getItemMeta().getDisplayName();
