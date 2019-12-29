@@ -1,0 +1,6 @@
+main: pl.overr.top.TopPlugin
+name: RgTop
+version: 1.0
+author: 0VERR
+commands:
+  top:
