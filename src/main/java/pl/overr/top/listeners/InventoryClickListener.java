@@ -24,15 +24,20 @@ public class InventoryClickListener implements Listener {
     @EventHandler
     public void onClickListener(InventoryClickEvent event){
 
-            if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) {
+        Inventory inventory = event.getInventory();
+        String inventoryName = inventory.getName();
+
+        if (inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTopki")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop Kopaczy")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop spedzonego czasu")) ||inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop smierci")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop killi")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop zrabanego drewna"))) event.setCancelled(true);
+        else return;
+
+        if (event.getCurrentItem().getType() == Material.AIR || event.getCurrentItem().getType() == null) {
             event.setCancelled(true);
             return;
         }
-        
 
-        Inventory inventory = event.getInventory();
         String itemStackName = event.getCurrentItem().getItemMeta().getDisplayName();
-        String inventoryName = inventory.getName();
+
+
 
         if (itemStackName == null){
             event.setCancelled(true);
