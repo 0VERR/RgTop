@@ -31,7 +31,6 @@ public class InventoryClickListener implements Listener {
         else return;
 
         if (event.getCurrentItem().getType() == Material.AIR || event.getCurrentItem().getType() == null) {
-            event.setCancelled(true);
             return;
         }
 
@@ -40,13 +39,12 @@ public class InventoryClickListener implements Listener {
 
 
         if (itemStackName == null){
-            event.setCancelled(true);
             return;
         }
 
         if (inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTopki")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop Kopaczy")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop spedzonego czasu"))
-        ||inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop smierci")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop killi")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop zrabanego drewna"))) event.setCancelled(true);
-        else return;
+        ||inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop smierci")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop killi")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop zrabanego drewna"))){
+        
 
         Player player = (Player) event.getWhoClicked();
 
@@ -73,6 +71,6 @@ public class InventoryClickListener implements Listener {
             player.closeInventory();
             player.openInventory(topInventory.getTopMinedWoodInventory());
         }
-
+        }
     }
 }
