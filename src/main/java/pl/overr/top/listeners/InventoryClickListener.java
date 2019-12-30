@@ -6,12 +6,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import pl.overr.top.inventory.TopInventory;
 import pl.overr.top.utils.ColorUtil;
 
-import javax.lang.model.element.ElementVisitor;
 
 public class InventoryClickListener implements Listener {
 
@@ -27,10 +24,11 @@ public class InventoryClickListener implements Listener {
         Inventory inventory = event.getInventory();
         String inventoryName = inventory.getName();
 
-        if (inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTopki")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop Kopaczy")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop spedzonego czasu")) ||inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop smierci")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop killi")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop zrabanego drewna"))) event.setCancelled(true);
+        if (inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTopki")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop Kopaczy")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop spedzonego czasu")) ||inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop smierci")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop killi")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop zrabanego drewna")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTwoje statystyki"))) event.setCancelled(true);
         else return;
 
         if (event.getCurrentItem().getType() == Material.AIR || event.getCurrentItem().getType() == null) {
+            event.setCancelled(true);
             return;
         }
 
@@ -39,12 +37,9 @@ public class InventoryClickListener implements Listener {
 
 
         if (itemStackName == null){
+            event.setCancelled(true);
             return;
         }
-
-        if (inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTopki")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop Kopaczy")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop spedzonego czasu"))
-        ||inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop smierci")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop killi")) || inventoryName.equalsIgnoreCase(ColorUtil.colorFix("&aTop zrabanego drewna"))){
-        
 
         Player player = (Player) event.getWhoClicked();
 
@@ -70,7 +65,11 @@ public class InventoryClickListener implements Listener {
         else if (itemStackName.equalsIgnoreCase(ColorUtil.colorFix("&aNajlepsi drwale"))){
             player.closeInventory();
             player.openInventory(topInventory.getTopMinedWoodInventory());
+        } else if (itemStackName.equalsIgnoreCase(ColorUtil.colorFix("&aTwoje statystyki"))){
+            player.closeInventory();
+            topInventory.createYourStatsInventory(player);
         }
-        }
+
     }
 }
+
